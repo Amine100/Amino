@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Edit Location Form </title>
+    <style>
+
+        label{
+            float: left;
+            width: 25%;
+            margin-right: 1em;
+            padding-top: .2em;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<i class="material-icons" style="font-size:60px;color:red;">cloud</i>
+<% include partials/header.ejs %>
+
+
+
+    <fieldset >
+        <legend style="border: 1px solid green"> </legend>
+
+
+       <label>Bus ID: </label>
+       <input type="text" name="Bus_ID"  value="<%= location.Bus_ID %>"/><br><br>
+       <label>Latitude: </label>
+       <input type="number" name="lat" value="<%= location.lat%>"/><br><br>
+       <label>Longitude: </label>
+       <input type="number" name="longi" value="<%= location.longi%>"/>
+
+
+
+
+
+    </fieldset>
+
+<div id="map" style="width:50%;height:400px;"></div>
+
+<script>
+    function myMap() {
+        var myBusPosition = {lat: <%= location.lat%>, lng:<%= location.longi%> };
+
+        var mapProp= {
+            center:myBusPosition,
+            zoom:10
+        };
+        var map = new google.maps.Map(document.getElementById("map"),mapProp);
+        //var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        var icon = {
+           url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKAYbSqqkcdKXb9_6ofvthk9w9s8Y5bYEOeKV1qw1ExH2fvTWP',
+            //url: '../../images/boos.jpg',
+           // url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+           scaledSize: new google.maps.Size(40,40),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0,0)
+
+
+        };
+
+        var marker = new google.maps.Marker({
+            position: myBusPosition,
+            map: map,
+            icon:icon
+        });
+
+
+        }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdC3oE9hrrdBDUH6qlqtP5zrP2HBicMX0&callback=myMap"></script>
+
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+
+</body>
+</html>

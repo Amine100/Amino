@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <meta charset="UTF-8">
+    <title>Edit Company Form </title>
+    <style>
+        form {
+            display: block;
+            margin-top:0em;
+        }
+    </style>
+</head>
+<body>
+<br><br>
+
+<% include partials/header.ejs %>
+<form action="/company/update" method="POST">
+    <fieldset>
+        <legend>Edit Company Form</legend><br>
+        <label>Company ID:  <%= company.Comp_ID %></label><br>
+        <input type="hidden" name="Comp_ID" value="<%= company.Comp_ID %>"/><br><br>
+        <label>Company Name: </label><br>
+        <input type="text" name="Comp_Name"  value="<%= company.Comp_Name %>"/><br><br>
+        <label>Tel Number: </label><br>
+        <input type="text" name="Comp_Tel" value="<%= company.Comp_Tel%>"/><br><br>
+        <label>Company Address: </label><br>
+        <input type="text" name="Comp_Address" value="<%= company.Comp_Address%>"/><br><br>
+
+    <input type="submit" value="UPDATE">
+    </fieldset>
+</form>
+
+
+
+</body>
+</html>

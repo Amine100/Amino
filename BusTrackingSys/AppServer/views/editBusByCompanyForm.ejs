@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view All Buses in the Company </title>
+    <style>
+        form {
+            display: block;
+            margin-top:0em;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/bus/update" method="POST">
+
+    Bus ID: <input type="text" name="Bus_ID" value="<%= bus.Bus_ID %>"/><br/>
+    Company ID: <input type="text" name="Comp_ID" value="<%= bus.Comp_ID %>"/><br/>
+    Registration Number: <input type="text" name="Reg_No"  value="<%= bus.Reg_No %>"/><br/>
+
+
+    <input type="submit" value="UPDATE">
+
+</form>
+
+</body>
+</html>

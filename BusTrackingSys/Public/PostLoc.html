@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+
+    <title>Post Bus Location</title>
+</head>
+<body class="container">
+
+<h1 align="center"> Location of the Bus </h1>
+</br></br>
+
+
+Location ID:    <input type="text" name="Loc_ID" placeholder="Location ID" />
+Bus ID:  <input type="text" name="Bus_ID" placeholder="Bus ID" />
+Latitude:    <input type="text" name="lat" placeholder="Lat" />
+Longitude:    <input type="text" name="long" placeholder="Long" />
+Time: <input type="time" name="time" placeholder="Time" /></br></br>
+
+<button type="button" class="btn btn-info" id="btn-add"><a href="GetLoc.html"  >Create </a></button>
+
+
+<div id="response"> </div>
+
+<script>
+
+    $(function(){
+        $('#btn-add').click(function(){
+            var locData = {
+                Loc_ID: $("input[name='Loc_ID']").val(),
+                Bus_ID: $("input[name='Bus_ID']").val(),
+                Lat: $("input[name='Lat']").val(),
+                Long: $("input[name='Long']").val(),
+                Time: $("input[name='Time']").val(),
+            }
+            $.ajax({
+                url:"/location/create",
+                method:"POST",
+                data:locData,
+                dataType:"HTML",
+                success:function(result){
+                    console.log(result);
+                    $('#response').html(result);
+                },
+                error:function(xhr,status,error){
+                    console.log("error: "+error);
+                }
+            });
+            clearInput();
+        });
+
+        function clearInput(){
+
+
+
+            $("input[name='Loc_ID']").val(''),
+            $("input[name='Bus_ID']").val(''),
+            $("input[name='Lat']").val(''),
+            $("input[name='Long']").val(''),
+            $("input[name='Time']").val('')
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

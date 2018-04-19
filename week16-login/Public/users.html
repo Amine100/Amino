@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="userform.html">create a new user</a>
+<table id="users-table">
+    <tr>
+        <th>username</th>
+        <th>Delete</th>
+
+    </tr>
+</table>
+
+<table style="display:block">
+    <tr id="buttonTemp">
+
+
+        <td>Remove</td>
+
+    </tr>
+
+</table>
+
+<script>
+    $(function(){
+        $.ajax({
+            url:"/user/",
+            method:"GET",
+            data:"",
+            dataType:"JSON",
+            success:function(result){
+                console.log(result);
+                populateTable(result);
+            },
+            error:function(xhr,status,error){
+                console.log("error: "+error);
+            }
+
+        })
+    })
+    function populateTable(users){
+        var table = document.getElementById("users-table");
+
+        var len = users.length;
+        var buttonsHtml = $('#buttonTemp').html();
+        for (var i = 0; i<len; i++){
+            var user = users[i];
+            var row = table.insertRow(-1);
+            var cell = row.insertCell(0);
+            cell.innerHTML = user.username;
+
+            $("#userTable").append("<tr> <td>"+user.username+"</td>"+buttonsHtml+"</tr>");
+        }
+
+    }
+
+    function deleteRow(rowId){
+        var row = document.getElementById(rowId);
+        var parent = row.parentNode;
+        parent.removeChild(row);
+    }
+
+</script>
+
+</body>
+</html>

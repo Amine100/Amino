@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Bus Form </title>
+    <style>
+        form {
+            display: block;
+            margin-top:0em;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/bus/update" method="POST">
+    <fieldset>
+        <legend>Bus Form</legend>
+
+
+    Bus ID: <input type="text" name="Bus_ID" value="<%= bus.Bus_ID%>"/><br><br>
+    Company Name: <input type="text" name="Comp_ID" value="<%= bus.Comp_Name%>"/><br><br>
+    Registration Number: <input type="text" name="Reg_No"  value="<%= bus.Reg_no%>"/><br><br>
+
+    <input type="submit" value="UPDATE" >
+
+    </fieldset>
+</form>
+
+</body>
+</html>

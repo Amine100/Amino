@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styleUser.css">
+    <meta charset="UTF-8">
+    <title> User Login</title>
+</head>
+<body>
+
+<div class="loginbox">
+<img src="/images/avata.jpg" class="avatar">
+
+    <form>
+        <fieldset>
+            <legend><h1> Login Here</h1></legend>
+        <p>Username</p>
+        <input type="text" placeholder="Enter Username" name="userid">
+        <p> Password</p>
+        <input type="password" placeholder="Enter Password" name="password">
+        <input type="button" onclick="check(this.form)" value="Login"><br><br>
+        Forgot <a href="#"> password?</a><br>
+            <a href="#">Don't have an account</a>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+
+    function check(form){
+        if(form.userid.value == "amine" && form.password.value == "12345"){
+            window.open('GetBus.html')
+        }
+        else{
+            alert("The username and password you entered do not match")
+        }
+    }
+</script>
+
+</body>
+</html>

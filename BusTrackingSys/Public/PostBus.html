@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+
+    <title>Post Bus</title>
+</head>
+<body style="background-color: pink"  class="container">
+
+<h1 align="center"> Welcome to Bus Web Page</h1>
+</br></br>
+
+Bus ID:    <input type="text" name="Bus_ID" placeholder="Bus ID" />
+Company Name: <input type="text" name="Comp_Name" placeholder="Company Name" />
+Reg No:  <input type="text" name="Reg_no" placeholder="Reg No" /></br></br>
+
+
+<button type="button" class="btn btn-info" id="btn-add"><a href = "GetBus.html">Submit</a></button>
+
+
+<div id="response"> </div>
+
+<script>
+
+    $(function(){
+        $('#btn-add').click(function(){
+            var busData = {
+                Bus_ID: $("input[name='Bus_ID']").val(),
+                Comp_Name: $("input[name='Comp_Name']").val(),
+                Reg_no: $("input[name='Reg_no']").val()
+
+            }
+
+            $.ajax({
+                url:"/bus/create",
+                method:"POST",
+                data:busData,
+                dataType:"HTML",
+                success:function(result){
+                    console.log(result);
+                    $('#response').html(result);
+                },
+                error:function(xhr,status,error){
+                    console.log("error: "+error);
+                }
+            });
+            clearInput();
+        });
+
+        function clearInput(){
+
+
+            $("input[name='Bus_ID']").val(''),
+            $("input[name='Comp_Name']").val(''),
+            $("input[name='Reg_no']").val('')
+
+        }
+
+    });
+
+
+</script>
+
+</body>
+</html>

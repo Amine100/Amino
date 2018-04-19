@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+    <title>Get Company</title>
+</head>
+<body style="background-color: pink " >
+
+
+<h6 align="center"> <font size="6" color="Green">MAYO UNIFIED GMIT DISTRICT </font></h6>
+<h4 align="center"> <font size="6" color="Green">TRANSPORTATION SERVICES DIVISION</font></h4><br>
+<center><img src="/images/mayo.jpg" alt="mayo logo"  width="100" height="100"></center>
+<h4 align="center"> <font size="6" color="Green">APPROVED CHARTER BUS COMPANIES</font></h4>
+<P align = "center"> The following charter bus companies have been inspected and approved by Transportation Services Division for use by the GMIT Castlebar School District</P>
+<br>
+<a href="PostComp.html" > <center>Create a Company</center></a></br></br>
+
+
+<table style="width: 80%" align="center" id="compTable" >
+
+<thead>
+<tr>
+    <th > Company_ID </th>
+    <th >Company_Name</th>
+    <th >Tel_Number</th>
+    <th>Address </th>
+    <th align="center" > Action</th>
+</tr>
+
+</thead>
+
+    <tbody>
+
+    </tbody>
+</table>
+
+
+
+<script>
+
+
+    $(function(){
+
+         $.ajax({
+            url:'/company/getAll',
+            method:'GET',
+            data:'',
+            dataType:'JSON',
+            success:function(result){
+                console.log("Hello2");
+                console.log(JSON.stringify(result));
+                populateTable(result);
+            }
+
+        });
+
+
+        function populateTable(CompanyBus) {
+          //  var len = CompanyBus.length;
+            //var buttonsHtml = $('#tableComp').html();
+
+
+            //for (var i = 0; i < len; i++) {
+              //  var company = CompanyBus[i];
+
+            var table = document.getElementById("compTable");
+
+            var len = CompanyBus.length;
+            for (var i = 0; i<len; i++){
+                var company = CompanyBus[i];
+                var row = table.insertRow(-1);
+                 row.setAttribute("id", company.Comp_ID);
+                var cell = row.insertCell(0);
+                cell.innerHTML = company.Comp_ID;
+                cell = row.insertCell(1);
+                cell.innerHTML = company.Comp_Name;
+                cell = row.insertCell(2);
+                cell.innerHTML = company.Comp_Tel;
+                cell = row.insertCell(3);
+                cell.innerHTML = company.Comp_Address;
+                cell = row.insertCell(4);
+                cell.innerHTML = "<a href='/company/editForm/"+company.Comp_ID+"'><button  class='btn btn-info btn-edit' onclick='editCompany(this)'>EDIT</button></a> | <button  class='btn btn-danger btn-delete' onclick='deleteCompany(this)'> DELETE </button>";
+                cell = row.insertCell(-1);
+
+            }
+        }
+
+    });
+    function deleteCompany(elem){
+        var compID = elem.closest("tr").getAttribute("id");
+        console.log("In delete company");
+        $.ajax({
+            url:'/company/'+compID,
+            method:'DELETE',
+            data:'',
+            dataType:'JSON',
+            success:function(result){
+                console.log("Returned");
+                // we could use refreshTable();
+                // I have chosen to delete just the row
+                var row = document.getElementById(compID);
+                var parent = row.parentNode;
+                parent.removeChild(row);
+            }
+
+        });
+
+    }
+
+   /* function editCompany(elem){
+        var compID = elem.closest("tr").getAttribute("id");
+        console.log("In update company");
+        $.ajax({
+            url:'/company/'+compID,
+            method:'POST',
+            data:'',
+            dataType:'JSON',
+            success:function(result){
+                console.log("Returned");
+                // we could use refreshTable();
+                // I have chosen to delete just the row
+                var row = document.getElementById(compID);
+                var parent = row.parentNode;
+                parent.removeChild(row);
+            }
+
+        });
+
+    } */
+</script>
+</body>
+</html>

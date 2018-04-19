@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Location Form </title>
+    <style>
+        form {
+            display: block;
+            margin-top:0em;
+        }
+        label{
+            float: left;
+            width: 25%;
+            margin-right: 1em;
+            padding-top: .2em;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<% include partials/header.ejs %>
+
+<form action="/location/create" method="POST">
+
+    <fieldset >
+        <legend style="border: 1px solid green"> </legend>
+
+
+        <label>Bus ID: </label>
+        <input type="text" name="Bus_ID"  value="<%= location.Bus_ID %>"/><br><br>
+        <label>Latitude: </label>
+        <input type="number" name="lat" value="<%= location.lat%>"/><br><br>
+        <label>Longitude: </label>
+        <input type="number" name="longi" value="<%= location.longi%>"/><br>
+
+        <input type="submit" value="UPDATE" >
+
+    </fieldset>
+</form>
+
+</body>
+</html>

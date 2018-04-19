@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+
+</head>
+<body>
+
+
+<div class="form">
+
+
+   <form class="login">
+       <fieldset>
+           <legend><h1>Administrator Panel</h1></legend>
+       <input type="text" placeholder= "administrator" name="adminid"/>
+        <input type="password" placeholder="password" name="pass"/>
+        <button class ="create" onclick="check(this.form)" text-align: right>SIGN IN</button>
+
+       </fieldset>
+    </form>
+
+</div>
+
+<script>
+
+    function check(form){
+        if(form.adminid.value == "Admin" && form.pass.value == "12345"){
+            window.open('GetComp.html')
+        }
+        else{
+            alert("The admin OR password you entered do not match")
+        }
+    }
+</script>
+
+</body>
+</html>
